@@ -21,6 +21,7 @@ class LoginScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is LoginSucessfulltyState) {
             showToast(message: state.message, state: ToastStates.success);
+            navigate(context: context, route: Routes.chat);
           }
           if (state is LoginErrorState) {
             showToast(message: state.message, state: ToastStates.error);
@@ -120,7 +121,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        navigate(route: Routes.register, context: context);
+                        navigateRepacement(route: Routes.register, context: context);
                       },
                       child: const Text.rich(
                         TextSpan(

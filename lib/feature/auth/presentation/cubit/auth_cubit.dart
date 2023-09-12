@@ -19,7 +19,6 @@ class AuthCubit extends Cubit<AuthState> {
   final TextEditingController nameController = TextEditingController();
   final GlobalKey<FormState> formLoginKey = GlobalKey<FormState>();
   final GlobalKey<FormState> formRegisterKey = GlobalKey<FormState>();
-  // final userAccount = FirebaseAuth.instance;
 
   IconData suffixIcon = Icons.visibility;
   bool isPasswordShown = true;
@@ -65,4 +64,6 @@ class AuthCubit extends Cubit<AuthState> {
               ForgetPasswordSucessfulltyState(message: r),
             ));
   }
+  //register
+
 }
