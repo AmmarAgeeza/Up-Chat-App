@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:up_chat_app/feature/auth/data/models/user_model.dart';
 
 import '../../data/repository/auth_repo.dart';
 import 'auth_state.dart';
@@ -38,7 +39,7 @@ class AuthCubit extends Cubit<AuthState> {
     dropDownValueDepartment = d!;
     emit(ChangeDepartmentValueState());
   }
-
+UserModel? userModel;
 // login
   void login() async {
     emit(LoginLoadingState());
@@ -47,9 +48,12 @@ class AuthCubit extends Cubit<AuthState> {
         password: passwordLoginController.text);
     res.fold(
         (l) => emit(LoginErrorState(message: l)),
-        (r) => emit(
-              LoginSucessfulltyState(message: r),
-            ));
+        (r) {
+          userModel=r;
+          emit(
+              LoginSucessfulltyState(message: r.name),
+            );
+        });
   }
 
   //forget password
@@ -65,5 +69,19 @@ class AuthCubit extends Cubit<AuthState> {
             ));
   }
   //register
-
+ void register() async {
+    emit(RegisterLoadingState());
+    var res = await authRepo.register(
+      email: emailRegisterController.text,
+      password: passwordRegisterController.text,
+      department: dropDownValueDepartment,
+      name: nameController.text,
+      phone: phoneNumberController.text
+    );
+    res.fold(
+        (l) => emit(RegisterErrorState(message: l)),
+        (r) => emit(
+              RegisterSucessfulltyState(message: r),
+            ));
+  }
 }

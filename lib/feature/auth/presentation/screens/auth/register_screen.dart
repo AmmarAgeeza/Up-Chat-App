@@ -137,13 +137,13 @@ class RegisterScreen extends StatelessWidget {
                     //submit button
 
                     state is RegisterLoadingState
-                        ? const CircularProgressIndicator()
+                        ? const Center(child: CircularProgressIndicator())
                         : CustomButton(
                             text: 'Submit',
                             onPressed: () async {
                               if (cubit.formRegisterKey.currentState!
                                   .validate()) {
-                                // cubit.register();
+                                cubit.register();
                               }
                             },
                           ),

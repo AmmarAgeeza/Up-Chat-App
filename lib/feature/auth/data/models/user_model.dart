@@ -1,14 +1,15 @@
-class UserModel   {
+class UserModel {
   final String name;
   final String phone;
   final String email;
   final String uid;
 
-  const UserModel(
-      {required this.name,
-      required this.phone,
-      required this.email,
-      required this.uid,});
+  const UserModel({
+    required this.name,
+    required this.phone,
+    required this.email,
+    required this.uid,
+  });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
@@ -27,6 +28,4 @@ class UserModel   {
       'uid': uid,
     };
   }
-
-
 }
